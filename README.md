@@ -12,7 +12,7 @@ This include can be added to the header or placed inline before the script is in
 <script src="./js/useful.interactions.js"></script>
 ```
 
-### Functions
+## Functions
 
 ```javascript
 useful.interaction.watch(
@@ -38,6 +38,8 @@ This function tries to unify mouse and touch interaction across desktop, Android
 **move : {function}** - A function that runs every time an interaction is in progress.
 
 **end : {function}** - A function that runs every time an interaction ends.
+
+### Coordinated Format
 
 The *coordinates* object is passed to all these functions.
 
