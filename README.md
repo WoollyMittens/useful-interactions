@@ -1,6 +1,6 @@
 # useful.interactions.js: Interactions Library
 
-A library of useful functions to ease working with HTML5 in legacy environments.
+A library of useful functions to ease working with touch and gestures.
 
 Try the <a href="http://www.woollymittens.nl/useful/default.php?url=interactions">tests</a>.
 
