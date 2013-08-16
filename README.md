@@ -30,9 +30,13 @@ useful.interaction.watch(
 This function tries to unify mouse and touch interaction across desktop, Android, iOS and Windows 8.
 
 **element : {DOM object}** - A DOM Element affected by the interaction.
+
 **wheel : {function}** - A function that runs every time the mouse wheel is used.
+
 **start : {function}** - A function that runs every time an interaction starts.
+
 **move : {function}** - A function that runs every time an interaction is in progress.
+
 **end : {function}** - A function that runs every time an interaction ends.
 
 The *coordinates* object is passed to all these functions.
@@ -51,9 +55,13 @@ coordinates = {
 An optional (empty) object that gets filled with all the interactions that get registered.
 
 **wheel : {object}** - The wheel object contains *y*, the scroll distance as an integer.
+
 **id : {object}** - Each touch interaction gets added as a separate object. *0* is the default interaction, or the first finger to touch the screen.
+
 **start : {object}** - This object contains the coordinates and gesture parameters of the start of the current interaction.
+
 **move : {object}** - This object contains the coordinates and gesture parameters of the interaction in progress.
+
 **end : {object}** - This object contains the coordinates and gesture parameters of the end of the current interaction.
 
 ## License
