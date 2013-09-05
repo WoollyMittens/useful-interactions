@@ -2,7 +2,7 @@
 
 A library of useful functions to ease working with touch and gestures.
 
-Try the <a href="http://www.woollymittens.nl/useful/default.php?url=interactions">tests</a>.
+Try the <a href="http://www.woollymittens.nl/useful/default.php?url=useful-interactions">tests</a>.
 
 ## How to include the script
 
