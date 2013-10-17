@@ -52,11 +52,9 @@
 				y : ((window.event) ? window.event.wheelDelta / 120 : -event.detail / 3)
 			};
 			// THINGS TO DO WHEN SCROLLED
-			handlers.wheel(coordinates);
-			// cancel the scrolling
-			return false;
+			handlers.wheel(coordinates, event);
 		};
-		element.onmousewheel = wheel;
+		element.addEventListener('mousewheel', wheel);
 		if (navigator.userAgent.match(/firefox/gi)) { element.addEventListener('DOMMouseScroll', wheel, false); }
 
 		// handle the start of the mouse movement
@@ -71,9 +69,7 @@
 				y : (event.pageY || event.y)
 			};
 			// THINGS TO DO WHEN MOUSE DOWN
-			handlers.start(coordinates);
-			// cancel the click
-			return false;
+			handlers.start(coordinates, event);
 		};
 		element.addEventListener('mousedown', start);
 
@@ -89,10 +85,8 @@
 					y : (event.pageY || event.y)
 				};
 				// THINGS TO DO WHEN DRAGGED
-				handlers.move(coordinates);
+				handlers.move(coordinates, event);
 			}
-			// cancel the click
-			return false;
 		};
 		document.addEventListener('mousemove', move);
 
@@ -108,11 +102,9 @@
 				};
 			}
 			// THINGS TO DO WHEN MOUSE UP
-			handlers.end(coordinates);
+			handlers.end(coordinates, event);
 			// clear the positions
-			coordinates[0] = {};
-			// cancel the click
-			return false;
+			coordinates = {};
 		};
 		document.addEventListener('mouseup', end);
 	};
@@ -132,77 +124,75 @@
 
 		// handle the start of the touch
 		start = function (event) {
-			var a, b, interactionss, id;
-			// for all interactionss
-			interactionss = event.touches || [event];
-			for (a = 0 , b = interactionss.length; a < b; a += 1) {
+			var a, b, touches, id;
+			// for all touches
+			touches = event.touches || [event];
+			for (a = 0, b = touches.length; a < b; a += 1) {
 				// get a reference id for the event
 				id = event.pointerId || a;
 				// reset the positions
 				coordinates[id] = {};
 				// store the start positions
 				coordinates[id].start = {
-					x : interactionss[a].pageX,
-					y : interactionss[a].pageY
+					x : touches[a].pageX,
+					y : touches[a].pageY
 				};
-				// THINGS TO DO WHEN TOUCH DOWN
-				handlers.start(coordinates);
 			}
-			// cancel the default
-			//return false;
+			// THINGS TO DO WHEN TOUCHED
+			handlers.start(coordinates, event);
 		};
-		element.ontouchstart = start;
-		element.onmspointerdown = start;
+		element.addEventListener('touchstart', start);
+		element.addEventListener('mspointerdown', start);
 
 		// handle the duration of the touch
 		move = function (event) {
-			var a, b, interactionss, id;
-			// for all interactionss
-			interactionss = event.touches || [event];
-			for (a = 0 , b = interactionss.length; a < b; a += 1) {
+			var a, b, touches, id, hasStarted = false;
+			// for all touches
+			touches = event.touches || [event];
+			for (a = 0, b = touches.length; a < b; a += 1) {
 				// get a reference id for the event
 				id = event.pointerId || a;
 				// if there is a touch in progress
 				if (coordinates[id] && coordinates[id].start) {
+					// report motion
+					hasStarted = true;
 					// store the move positions
 					coordinates[id].move = {
-						x : interactionss[a].pageX,
-						y : interactionss[a].pageY
+						x : touches[a].pageX,
+						y : touches[a].pageY
 					};
-					// THINGS TO DO WHEN SWIPED
-					handlers.move(coordinates);
 				}
 			}
-			// cancel the default
-			return false;
+			// THINGS TO DO WHEN MOVED
+			if(hasStarted) { handlers.move(coordinates, event); }
 		};
-		element.ontouchmove = move;
-		element.onmspointermove = move;
+		element.addEventListener('touchmove', move);
+		element.addEventListener('mspointermove', move);
 
 		// handle the end of the touch
 		end = function (event) {
-			var interactionss, a, b, id;
-			// for all interactionss
-			interactionss = event.touches || [event];
-			for (a = 0 , b = interactionss.length; a < b; a += 1) {
+			var touches, a, b, id;
+			// for all touches
+			touches = event.touches || [event];
+			for (a = 0, b = touches.length; a < b; a += 1) {
+				// get a reference id for the event
+				id = event.pointerId || a;
 				// if there is a touch in progress
 				if (coordinates[id] && coordinates[id].start) {
 					// store the end positions
 					coordinates[id].end = {
-						x : interactionss[a].pageX,
-						y : interactionss[a].pageY
+						x : touches[a].pageX,
+						y : touches[a].pageY
 					};
-					// THINGS TO DO WHEN TOUCH UP
-					handlers.end(coordinates);
 				}
-				// clear the positions afterwards
-				coordinates[id] = {};
 			}
-			// cancel the default
-			//return false;
+			// THINGS TO DO WHEN RELEASED
+			handlers.end(coordinates, event);
+			// clear the positions afterwards
+			coordinates = {};
 		};
-		element.ontouchend = end;
-		element.onmspointerup = end;
+		element.addEventListener('touchend', end);
+		element.addEventListener('mspointerup', end);
 
 	};
 
@@ -229,10 +219,10 @@
 				scale : event.scale
 			};
 			// THINGS TO DO WHEN TOUCH DOWN
-			handlers.start(coordinates);
+			handlers.start(coordinates, event);
 		};
-		element.ongesturestart = start;
-		element.onmsgesturestart = start;
+		element.addEventListener('gesturestart', start);
+		element.addEventListener('msgesturestart', start);
 
 		// handle the duration of the gesture
 		move = function (event) {
@@ -244,11 +234,11 @@
 					scale : event.scale
 				};
 				// THINGS TO DO WHEN SWIPED
-				handlers.move(coordinates);
+				handlers.move(coordinates, event);
 			}
 		};
-		element.ongesturechange = move;
-		element.onmsgesturechange = move;
+		element.addEventListener('gesturechange', move);
+		element.addEventListener('msgesturechange', move);
 
 		// handle the end of the gesture
 		end = function (event) {
@@ -258,12 +248,13 @@
 				scale : event.scale
 			};
 			// THINGS TO DO WHEN TOUCH UP
-			handlers.end(coordinates);
+			handlers.end(coordinates, event);
 			// clear the positions afterwards
-			coordinates[0] = {};
+			coordinates = {};
 		};
-		element.ongestureend = end;
-		element.onmsmsgestureend = end;
+		element.addEventListener('gestureend', move);
+		element.addEventListener('msgestureend', move);
+
 	};
 
 	// public functions

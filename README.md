@@ -15,13 +15,13 @@ This include can be added to the header or placed inline before the script is in
 ## How to start the script
 
 ```javascript
-useful.interaction.watch(
+useful.interactions.watch(
 	element,
 	{
-		'wheel' : function (coords) {},
-		'start' : function (coords) {},
-		'move' : function (coords) {},
-		'end' : function (coords) {}
+		'wheel' : function (coords, event) {},
+		'start' : function (coords, event) { event.preventDefault(); },
+		'move' : function (coords, event) {},
+		'end' : function (coords, event) {}
 	},
 	coords
 );

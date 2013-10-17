@@ -48,8 +48,14 @@
 									interactionsTest,
 									{
 										'wheel' : function (coords) { if(coords.wheel) console.log('wheel:', coords.wheel); },
-										'start' : function (coords) { if(coords[0]) console.log('start:', coords[0].start); },
-										'move' : function (coords) { if(coords[0]) console.log('move:', coords[0].move); },
+										'start' : function (coords) {
+											if(coords[0]) console.log('start A:' + coords[0].start.x + ',' + coords[0].start.y);
+											if(coords[1]) console.log('start B:' + coords[1].start.x + ',' + coords[1].start.y);
+										},
+										'move' : function (coords) {
+											if(coords[0]) console.log('move A:' + coords[0].start.x + ',' + coords[0].start.y);
+											if(coords[1]) console.log('move B:' + coords[1].start.x + ',' + coords[1].start.y);
+										},
 										'end' : function (coords) {}
 									},
 									interactionsCoords
