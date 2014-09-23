@@ -22,15 +22,15 @@ var useful = useful || {};
 			// if touch is supported
 			if (!!('ontouchstart' in window) || !!('onmsgesturechange' in window)) {
 				// use touch
-				interactions.touch(element, handlers, coordinates);
+				this.touch(element, handlers, coordinates);
 			} else {
 				// fall back on mouse
-				interactions.mouse(element, handlers, coordinates);
+				this.mouse(element, handlers, coordinates);
 			}
 			// if gestures are supported
 			if (!!('ongesturestart' in window) || !!('onmsgesturestart' in window)) {
 				// use gestures
-				interactions.gestures(element, handlers, coordinates);
+				this.gestures(element, handlers, coordinates);
 			}
 		},
 
