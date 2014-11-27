@@ -1,6 +1,6 @@
 /*
 	Source:
-	van Creij, Maurice (2012). "useful.polyfills.js: A library of useful polyfills to ease working with HTML5 in legacy environments.", version 20121126, http://www.woollymittens.nl/.
+	van Creij, Maurice (2014). "useful.polyfills.js: A library of useful polyfills to ease working with HTML5 in legacy environments.", version 20141127, http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
@@ -280,7 +280,7 @@ var useful = useful || {};
 
 /*
 	Source:
-	van Creij, Maurice (2012). "useful.interactions.js: A library of useful functions to ease working with touch and gestures.", version 20121126, http://www.woollymittens.nl/.
+	van Creij, Maurice (2014). "useful.interactions.js: A library of useful functions to ease working with touch and gestures.", version 20141127, http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
