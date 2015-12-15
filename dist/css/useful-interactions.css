@@ -1,25 +1,20 @@
 /*
 	Example Styling for Useful Functions
 */
-/* line 7, ../../src/scss/useful-interactions.scss */
 .useful-tests dt {
   font-weight: bold;
   display: block;
   margin: 0;
-  padding: 0;
-}
-/* line 13, ../../src/scss/useful-interactions.scss */
+  padding: 0; }
+
 .useful-tests dd {
   display: block;
   margin: 0 0 1.3em 0;
-  padding: 0;
-}
+  padding: 0; }
 
-/* line 19, ../../src/scss/useful-interactions.scss */
 #interactions-test {
   border: solid 1px #333;
   height: 64px;
   margin-bottom: 1em;
   padding: 1em;
-  width: auto;
-}
+  width: auto; }
