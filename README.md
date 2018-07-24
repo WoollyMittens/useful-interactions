@@ -1,4 +1,4 @@
-# useful.interactions.js: Interactions Library
+# interactions.js: Interactions Library
 
 A library of useful functions to ease working with touch and gestures.
 
@@ -9,21 +9,13 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-interactions
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/useful-interactions.js"></script>
-```
-
-To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5.js*.
-
-```html
-<!--[if lte IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+<script src="./js/interactions.js"></script>
 ```
 
 ## How to start the script
 
 ```javascript
-useful.interactions.watch(
+interactions.watch(
 	element,
 	{
 		'wheel' : function (coords, event) {},
