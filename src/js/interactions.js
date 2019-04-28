@@ -256,5 +256,5 @@ var interactions = {
 };
 
 // return as a require.js module
-if (typeof define != 'undefined') define(['interactions'], function () { return interactions });
+if (typeof define != 'undefined') define([], function () { return interactions });
 if (typeof module != 'undefined') module.exports = interactions;

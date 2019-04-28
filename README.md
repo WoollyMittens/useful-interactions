@@ -9,7 +9,23 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-interactions
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/interactions.js"></script>
+<script src="js/interactions.js"></script>
+```
+
+Or use [Require.js](https://requirejs.org/).
+
+```js
+requirejs([
+	'js/interactions.js'
+], function(interactions) {
+	...
+});
+```
+
+Or import into an MVC framework.
+
+```js
+var interactions = require('js/interactions.js');
 ```
 
 ## How to start the script
